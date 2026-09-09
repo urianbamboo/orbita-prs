@@ -1,0 +1,21 @@
+@import "@fontsource-variable/funnel-sans";
+@import "@fontsource-variable/geist-mono";
+@import "@fontsource-variable/inter";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pulse animation for live indicator dots */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.pulse {
+  animation: pulse-green 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scrollbar styling for station columns */
+.station-scroll::-webkit-scrollbar { width: 4px; }
+.station-scroll::-webkit-scrollbar-track { background: transparent; }
+.station-scroll::-webkit-scrollbar-thumb { background: #23305F; border-radius: 999px; }

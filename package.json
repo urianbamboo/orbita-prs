@@ -1,0 +1,23 @@
+{
+  "name": "orbita-prs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Órbita de PRs — dashboard read-only de pull requests",
+  "license": "MIT",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0",
+    "npm": ">=10"
+  },
+  "workspaces": ["shared", "server", "client"],
+  "scripts": {
+    "predev": "npm run build -w shared",
+    "dev": "concurrently -k -n server,client -c cyan,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "test": "npm run test -w server",
+    "build": "npm run build -w shared && npm run build -w server && npm run build -w client",
+    "start": "cross-env NODE_ENV=production SERVE_CLIENT=1 node server/dist/index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
+  }
+}
