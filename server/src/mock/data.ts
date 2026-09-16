@@ -26,9 +26,8 @@ export const MOCK_REPOS: Repo[] = [
 
 // ─── PRs (matching design visual exactly) ─────────────────────────────────────
 
-const BASE = "2026-06-18T";
 const ago = (h: number, m = 0) =>
-  new Date(Date.parse(`${BASE}14:32:00Z`) - (h * 3600 + m * 60) * 1000).toISOString();
+  new Date(Date.now() - (h * 3600 + m * 60) * 1000).toISOString();
 
 export const MOCK_PRS: Pr[] = [
   // ── nova ──────────────────────────────────────────────────────────────────

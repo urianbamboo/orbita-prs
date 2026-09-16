@@ -6,6 +6,8 @@ Dashboard **read-only** em tela única: pull requests abertas (e mergeadas recen
 
 **by [Urian](https://github.com/urianbamboo)** · MIT
 
+![Dashboard do Órbita de PRs com dados fictícios](docs/orbita-prs-dashboard.png)
+
 ## Quick start (demo, zero segredo)
 
 Sem token o servidor sobe com dados fictícios.
