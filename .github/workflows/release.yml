@@ -1,0 +1,20 @@
+name: Draft release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Package tagged source
+        run: git archive --format=tar.gz --prefix="${GITHUB_REPOSITORY#*/}/" -o source.tar.gz "$GITHUB_REF_NAME"
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" source.tar.gz --draft --generate-notes --verify-tag

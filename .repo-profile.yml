@@ -1,0 +1,21 @@
+{
+  "exposure": "internal",
+  "regulated": "none",
+  "state": "stateless",
+  "surface": "web_app",
+  "deploy": "none",
+  "consumers": "me",
+  "data_class": "C2",
+  "users": "me",
+  "platforms": ["linux", "macos", "windows"],
+  "observability": {
+    "decision": "none",
+    "reason": "Single-user local dashboard; existing Fastify logs and GitHub sync state are enough without a remote alert dependency"
+  },
+  "ci_variant": "node",
+  "commands": {
+    "unit": "npm test",
+    "ci": "make check-ci",
+    "builds": {"macos": "npm run build"}
+  }
+}
