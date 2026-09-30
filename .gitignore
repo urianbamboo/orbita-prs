@@ -14,3 +14,4 @@ secret/
 *.pem.pub
 *private-key*
 *private_key*
+.checks/
