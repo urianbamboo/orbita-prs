@@ -19,6 +19,18 @@ def run(args: list[str], *, version: bool = False) -> str:
     return (result.stdout or result.stderr).strip() if version else ""
 
 
+def write_receipt(commit: str, versions: dict[str, str]) -> None:
+    receipt = ROOT / ".checks/last_run.json"
+    receipt.parent.mkdir(exist_ok=True)
+    receipt.write_text(
+        json.dumps(
+            {"commit": commit, "exit_code": 0, "tool_versions": versions},
+            sort_keys=True,
+        )
+        + "\n"
+    )
+
+
 def main(ci: bool = False) -> int:
     try:
         if not list((ROOT / "server/src").rglob("*.test.ts")):
@@ -56,15 +68,7 @@ def main(ci: bool = False) -> int:
     except (RuntimeError, OSError) as exc:
         print(f"check: FAIL: {exc}", file=sys.stderr)
         return 1
-    receipt = ROOT / ".checks/last_run.json"
-    receipt.parent.mkdir(exist_ok=True)
-    receipt.write_text(
-        json.dumps(
-            {"commit": commit, "exit_code": 0, "tool_versions": versions},
-            sort_keys=True,
-        )
-        + "\n"
-    )
+    write_receipt(commit, versions)
     print(
         "check: PASS unit, build, Semgrep, gitleaks, npm audit; receipt bound to "
         + commit

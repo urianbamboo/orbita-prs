@@ -1,9 +1,5 @@
 {
-  "files": {
-    "tools/check.py": {
-      "size:function-lines:main#1": 1
-    }
-  },
+  "files": {},
   "size_rules": 1,
   "version": 1
 }
