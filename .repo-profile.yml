@@ -13,8 +13,10 @@
     "reason": "Single-user local dashboard; existing Fastify logs and GitHub sync state are enough without a remote alert dependency"
   },
   "ci_variant": "node",
+  "require": ["C-FAILMODES"],
   "commands": {
     "unit": "npm test",
+    "deps_consume": "npm audit --audit-level=low",
     "ci": "make check-ci",
     "builds": {"macos": "npm run build"}
   }
